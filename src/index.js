@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./config/swagger');
+const swaggerSpec = require('./config/swagger.json');
 const scheduleRoutes = require('./routes/schedules');
 const errorHandler = require('./middleware/errorHandler');
 
@@ -13,8 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// Swagger UI
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// Swagger UI Configuration untuk Vercel
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui.min.css";
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { customCssUrl: CSS_URL }));
 
 // Routes
 app.use('/api/schedules', scheduleRoutes);
