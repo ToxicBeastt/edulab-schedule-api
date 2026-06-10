@@ -7,7 +7,7 @@ const studentController = require('../controllers/studentController');
 const teacherController = require('../controllers/teacherController');
 const excelController = require('../controllers/excelController');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: '/tmp' });
 
 // Apply auth middleware to all routes in this router
 router.use(authMiddleware);

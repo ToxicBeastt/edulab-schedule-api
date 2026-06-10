@@ -138,12 +138,9 @@ exports.exportExcel = async (req, res, next) => {
       });
     }
 
-    // Ensure public/reports directory exists
-    const reportsDir = path.join(__dirname, '../../public/reports');
-    if (!fs.existsSync(reportsDir)) {
-      fs.mkdirSync(reportsDir, { recursive: true });
-    }
-
+    // Use /tmp for serverless environments (Vercel)
+    const reportsDir = '/tmp';
+    
     const fileName = `rekap_${Date.now()}.xlsx`;
     const filePath = path.join(reportsDir, fileName);
 
