@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Schedule {
+  id           String   @id @default(uuid())
+  class_code   String   // e.g. "XA01"
+  class_name   String   // e.g. "X-A"
+  subject_code String   // e.g. "BIO"
+  teacher_nik  String   // e.g. "20222029"
+  teacher_name String   // e.g. "Najdin Aqmarina, S.Pd."
+  date         DateTime
+  jam_ke       Int
+  time_start   String   // e.g. "08:40:00"
+  time_end     String   // e.g. "09:20:00"
+
+  @@map("schedules")
+}
